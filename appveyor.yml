@@ -23,6 +23,7 @@ install:
 build_script:
     - 'echo hello world'
     - '%CYG_BASH% -lc "echo \"hello from Cygwin\""'
+    - '%CYG_BASH% -lc "echo \"Just to have another commit message\""'
 
 test: off
 
