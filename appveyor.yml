@@ -1,0 +1,32 @@
+# based on: https://github.com/mono/mono/blob/master/appveyor.yml
+
+environment:
+    global:
+        CYG_ROOT: C:\cygwin
+        CYG_MIRROR: http://cygwin.mirror.constant.com
+        CYG_CACHE: C:\cygwiin\var\cache\setup
+        CYG_BASH: C:\cygwin\bin\bash
+
+cache:
+    - '%CYG_CACHE%'
+
+clone_depth: 1
+
+init:
+    - git config --global core.autocrlf input
+
+install:
+    - ps: 'Start-FileDownload "http://cygwin.com/setup-x86.exe" -FileName "setup-x86.exe"'
+    - 'setup-x86.exe --quiet-mode --no-shortcuts --only-site --root "%CYG_ROOT%" --site "%CYG_MIRROR%" --local-package-dir "%CYG_CACHE%" --packages python,git > NUL 2>&1'
+    - '%CYG_BASH% -lc "cygcheck -dc cygwin"'
+
+build_script:
+    - 'echo hello world'
+    - '%CYG_BASH% -lc "echo \"hello from Cygwin\""'
+
+test: off
+
+branches:
+    only:
+        - master
+
