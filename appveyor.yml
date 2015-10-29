@@ -24,6 +24,9 @@ build_script:
     - 'echo hello world'
     - '%CYG_BASH% -lc "echo \"hello from Cygwin\""'
     - '%CYG_BASH% -lc "echo \"Pull request\""'
+    - 'echo Path = %PATH%'
+    - 'echo PYTHONPATH = %PYTHONPATH%'
+    - 'dir c:\python27'
 
 test: off
 
